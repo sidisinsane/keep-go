@@ -1,0 +1,40 @@
+{
+  "generated_at": "2026-05-19T11:59:23.181937Z",
+  "summary": {
+    "total": 4,
+    "schema_invalid": 0,
+    "hard_violations": 0,
+    "warnings": 2,
+    "injected": 0
+  },
+  "documents": {
+    "marcella-hazan": {
+      "status": "published",
+      "hard_violations": null,
+      "warnings": null,
+      "injected": null
+    },
+    "ragu": {
+      "status": "published",
+      "hard_violations": null,
+      "warnings": null,
+      "injected": null
+    },
+    "soffritto": {
+      "status": "canon",
+      "hard_violations": null,
+      "warnings": [
+        "incomplete: has 0 authored relation(s), minimum is 1"
+      ],
+      "injected": null
+    },
+    "unfinished-idea": {
+      "status": "draft",
+      "hard_violations": null,
+      "warnings": [
+        "incomplete: has 0 authored relation(s), minimum is 1"
+      ],
+      "injected": null
+    }
+  }
+}

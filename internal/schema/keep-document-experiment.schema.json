@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/sidisinsane/keep-go/v0.1.0/schema/keep-document-experiment.schema.json",
+  "title": "Keep Document — Experiment Extension",
+  "description": "Extension schema for Keep documents of kind 'experiment'. Validated in addition to the core document schema. Defines fields required to capture a structured experiment record.",
+  "type": "object",
+  "required": ["hypothesis", "outcome"],
+  "additionalProperties": true,
+  "properties": {
+    "hypothesis": {
+      "title": "Hypothesis",
+      "description": "The hypothesis being tested by this experiment.",
+      "type": "string"
+    },
+    "outcome": {
+      "title": "Outcome",
+      "description": "The result of the experiment.",
+      "type": "string",
+      "enum": ["succeeded", "failed", "inconclusive"]
+    }
+  }
+}

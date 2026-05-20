@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-05-19T11:59:23.173721Z",
+  "documents": {
+    "marcella-hazan": {
+      "last_meaningful_modification": "2026-05-19T10:05:33.013290059Z",
+      "content_hash": "5a5182b7",
+      "meaningful_hash": "48a287b4",
+      "status_at_last_check": "published"
+    },
+    "ragu": {
+      "last_meaningful_modification": "2026-05-19T10:05:33.007628818Z",
+      "content_hash": "365aec7f",
+      "meaningful_hash": "4c8abd64",
+      "status_at_last_check": "published"
+    },
+    "soffritto": {
+      "last_meaningful_modification": "2026-05-19T10:05:33.010649044Z",
+      "content_hash": "b5dcb9dc",
+      "meaningful_hash": "53f7d6e3",
+      "status_at_last_check": "canon"
+    },
+    "unfinished-idea": {
+      "last_meaningful_modification": "2026-05-19T10:05:33.015808365Z",
+      "content_hash": "283412fa",
+      "meaningful_hash": "08932ad6",
+      "status_at_last_check": "draft"
+    }
+  }
+}

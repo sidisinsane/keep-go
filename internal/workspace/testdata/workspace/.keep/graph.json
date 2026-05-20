@@ -1,0 +1,53 @@
+{
+  "generated_at": "2026-05-19T11:59:23.156816Z",
+  "nodes": [
+    {
+      "slug": "unfinished-idea",
+      "title": "Unfinished Idea",
+      "kind": "note",
+      "status": "draft",
+      "private": false
+    },
+    {
+      "slug": "marcella-hazan",
+      "title": "Marcella Hazan",
+      "kind": "person",
+      "status": "published",
+      "private": false
+    },
+    {
+      "slug": "ragu",
+      "title": "Ragù alla Bolognese",
+      "kind": "recipe",
+      "status": "published",
+      "private": false
+    },
+    {
+      "slug": "soffritto",
+      "title": "Soffritto Base",
+      "kind": "recipe",
+      "status": "canon",
+      "private": false
+    }
+  ],
+  "edges": [
+    {
+      "from": "marcella-hazan",
+      "to": "ragu",
+      "type": "inspired_by",
+      "auto_injected": false
+    },
+    {
+      "from": "ragu",
+      "to": "soffritto",
+      "type": "derived_from",
+      "auto_injected": false
+    },
+    {
+      "from": "soffritto",
+      "to": "ragu",
+      "type": "superseded_by",
+      "auto_injected": true
+    }
+  ]
+}

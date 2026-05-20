@@ -1,0 +1,96 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/sidisinsane/keep-go/v0.1.0/schema/keep-document.schema.json",
+  "title": "Keep Document",
+  "description": "Core schema for a Keep workspace document. Every Markdown file in a Keep workspace must satisfy this schema regardless of its kind.",
+  "type": "object",
+  "required": ["slug", "title", "kind", "status", "date_created", "tags"],
+  "additionalProperties": true,
+  "properties": {
+    "slug": {
+      "title": "Slug",
+      "description": "Unique identifier for the document across the workspace. URL-safe, kebab-case.",
+      "type": "string"
+    },
+    "title": {
+      "title": "Title",
+      "description": "Human-readable document title.",
+      "type": "string"
+    },
+    "kind": {
+      "title": "Kind",
+      "description": "Semantic document type, e.g. 'recipe', 'person', 'note', 'experiment'. Drives extension selection.",
+      "type": "string"
+    },
+    "status": {
+      "title": "Status",
+      "description": "Lifecycle stage of the document. Documents at 'published' or 'canon' must pass linting with zero hard violations.",
+      "type": "string",
+      "enum": ["draft", "review", "published", "canon"]
+    },
+    "date_created": {
+      "title": "Date Created",
+      "description": "ISO 8601 creation date in YYYY-MM-DD format.",
+      "type": "string",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+    },
+    "tags": {
+      "title": "Tags",
+      "description": "Freeform tags for discovery and filtering.",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "private": {
+      "title": "Private",
+      "description": "If true, the document is excluded from index.md and cannot be the target of relations from non-private documents.",
+      "type": "boolean",
+      "default": false
+    },
+    "summary": {
+      "title": "Summary",
+      "description": "One-sentence description of the document. Used to populate index.md. Intended to be written by an LLM during ingest.",
+      "type": "string"
+    },
+    "relations": {
+      "title": "Relations",
+      "description": "Typed directed edges to other documents in the workspace.",
+      "type": "array",
+      "items": {
+        "title": "Relation",
+        "description": "A single typed directed edge to another document.",
+        "type": "object",
+        "required": ["target", "type"],
+        "properties": {
+          "target": {
+            "title": "Target",
+            "description": "Slug of the target document. Must resolve to an existing document in the workspace.",
+            "type": "string"
+          },
+          "type": {
+            "title": "Type",
+            "description": "Semantic type of the relation. 'contradicts' and 'supersedes' are symmetric — Keep auto-injects the reciprocal.",
+            "type": "string",
+            "enum": [
+              "derived_from",
+              "extends",
+              "supports",
+              "contradicts",
+              "inspired_by",
+              "supersedes",
+              "addresses_gap",
+              "superseded_by"
+            ]
+          },
+          "auto_injected": {
+            "title": "Auto Injected",
+            "description": "True when this relation was written by Keep rather than authored by a human or LLM. Never set this manually.",
+            "type": "boolean",
+            "default": false
+          }
+        }
+      }
+    }
+  }
+}

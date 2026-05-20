@@ -1,0 +1,43 @@
+{
+  "schema_version": "0.1.0",
+  "staleness": {
+    "draft":     {"days": 14},
+    "review":    {"days": 28},
+    "published": {"days": 180},
+    "canon":     {"days": null}
+  },
+  "completeness": {
+    "min_ratio": 0.6,
+    "required_fields": ["kind", "tags"],
+    "required_relations": 1
+  },
+  "relation_symmetry": {
+    "contradicts":   {"symmetric": true,  "reciprocal_type": "contradicts"},
+    "supersedes":    {"symmetric": true,  "reciprocal_type": "superseded_by"},
+    "derived_from":  {"symmetric": false},
+    "extends":       {"symmetric": false},
+    "supports":      {"symmetric": false},
+    "inspired_by":   {"symmetric": false},
+    "addresses_gap": {"symmetric": false},
+    "superseded_by": {"symmetric": false}
+  },
+  "extensions": {
+    "genealogy": {
+      "applies_when": {"kind": "person"},
+      "additional_required": ["birth_date", "family_name"],
+      "fields": {
+        "birth_date":  {"type": "isodate"},
+        "death_date":  {"type": "isodate"},
+        "family_name": {"type": "string"}
+      }
+    },
+    "experiment": {
+      "applies_when": {"kind": "experiment"},
+      "additional_required": ["hypothesis", "outcome"],
+      "fields": {
+        "hypothesis": {"type": "string"},
+        "outcome":    {"type": "string", "enum": ["succeeded", "failed", "inconclusive"]}
+      }
+    }
+  }
+}

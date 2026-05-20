@@ -1,0 +1,171 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/sidisinsane/keep-go/v0.1.0/schema/keep-config.schema.json",
+  "title": "Keep Workspace Configuration",
+  "description": "Configuration schema for a Keep workspace. Place this file at the workspace root as keep.yml, keep.yaml, or keep.json.",
+  "type": "object",
+  "required": ["schema_version"],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "title": "Schema Version",
+      "description": "The semantic version of the Keep configuration schema, e.g. '0.1.0'. Must be a valid semver string.",
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "staleness": {
+      "title": "Staleness Thresholds",
+      "description": "Controls how many days without a meaningful modification before a document is flagged as stale. Each entry corresponds to a document lifecycle status. Set days to null to disable staleness checking for that status.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "draft": {
+          "title": "Draft Staleness",
+          "description": "Staleness threshold for documents with status 'draft'.",
+          "type": "object",
+          "required": ["days"],
+          "properties": {
+            "days": {
+              "title": "Days",
+              "description": "Number of days before a draft document is considered stale. Accepts an integer or null. Set to null to disable.",
+              "type": ["integer", "null"],
+              "default": 14
+            }
+          }
+        },
+        "review": {
+          "title": "Review Staleness",
+          "description": "Staleness threshold for documents with status 'review'.",
+          "type": "object",
+          "required": ["days"],
+          "properties": {
+            "days": {
+              "title": "Days",
+              "description": "Number of days before a review document is considered stale. Accepts an integer or null. Set to null to disable.",
+              "type": ["integer", "null"],
+              "default": 28
+            }
+          }
+        },
+        "published": {
+          "title": "Published Staleness",
+          "description": "Staleness threshold for documents with status 'published'.",
+          "type": "object",
+          "required": ["days"],
+          "properties": {
+            "days": {
+              "title": "Days",
+              "description": "Number of days before a published document is considered stale. Accepts an integer or null. Set to null to disable.",
+              "type": ["integer", "null"],
+              "default": 180
+            }
+          }
+        },
+        "canon": {
+          "title": "Canon Staleness",
+          "description": "Staleness threshold for documents with status 'canon'. Canon documents never go stale by default.",
+          "type": "object",
+          "required": ["days"],
+          "properties": {
+            "days": {
+              "title": "Days",
+              "description": "Number of days before a canon document is considered stale. Accepts an integer or null. Set to null to disable.",
+              "type": ["integer", "null"],
+              "default": null
+            }
+          }
+        }
+      }
+    },
+    "completeness": {
+      "title": "Completeness Settings",
+      "description": "Controls how the linter evaluates whether a document is sufficiently complete. Incomplete documents receive a soft warning, not a hard violation.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "min_ratio": {
+          "title": "Minimum Completeness Ratio",
+          "description": "Minimum ratio of populated recommended fields required before a document is considered complete. Value between 0 and 1.",
+          "type": "number",
+          "default": 0.6
+        },
+        "required_fields": {
+          "title": "Required Fields",
+          "description": "List of frontmatter field names that must be present for a document to be considered complete. Missing fields produce an incomplete warning.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": ["kind", "tags"]
+        },
+        "required_relations": {
+          "title": "Required Relations",
+          "description": "Minimum number of authored (non-auto-injected) relations a document must have to be considered complete.",
+          "type": "integer",
+          "default": 1
+        }
+      }
+    },
+    "extensions": {
+      "title": "Extensions",
+      "description": "User-defined extensions that add required fields to documents of a specific kind. Each key is the extension name. Built-in extensions (genealogy, experiment) are defined by the app and do not need to be declared here.",
+      "type": "object",
+      "additionalProperties": {
+        "title": "Extension Definition",
+        "description": "Defines additional required and optional fields for documents matching the applies_when predicate.",
+        "type": "object",
+        "required": ["applies_when", "additional_required", "fields"],
+        "properties": {
+          "applies_when": {
+            "title": "Applies When",
+            "description": "Predicate that determines which documents this extension applies to. Currently only kind-based matching is supported.",
+            "type": "object",
+            "required": ["kind"],
+            "properties": {
+              "kind": {
+                "title": "Kind",
+                "description": "The document kind this extension applies to, e.g. 'recipe' or 'person'.",
+                "type": "string"
+              }
+            }
+          },
+          "additional_required": {
+            "title": "Additional Required Fields",
+            "description": "Field names that are required for documents matching this extension. Missing fields produce a schema validation failure.",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "fields": {
+            "title": "Field Definitions",
+            "description": "Definitions for all fields contributed by this extension, both required and optional. Each key is the field name.",
+            "type": "object",
+            "additionalProperties": {
+              "title": "Field Definition",
+              "description": "Type constraints for a single extension field.",
+              "type": "object",
+              "required": ["type"],
+              "properties": {
+                "type": {
+                  "title": "Field Type",
+                  "description": "The data type of this field. Supported values: 'string', 'isodate'. Use 'isodate' for ISO 8601 date strings (YYYY-MM-DD).",
+                  "type": "string",
+                  "enum": ["string", "isodate"]
+                },
+                "enum": {
+                  "title": "Allowed Values",
+                  "description": "If present, restricts the field value to one of these strings.",
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
