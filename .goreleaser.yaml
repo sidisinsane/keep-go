@@ -43,15 +43,15 @@ changelog:
     exclude:
       - "^test:"
 
-brews:
-  - name: keep
-    repository:
-      owner: sidisinsane
-      name: homebrew-tap
-    directory: Formula
-    description: A personal wiki tool
-    license: MIT
-    homepage: https://github.com/sidisinsane/keep-go
+# brews:
+#   - name: keep
+#     repository:
+#       owner: sidisinsane
+#       name: homebrew-tap
+#     directory: Formula
+#     description: A personal wiki tool
+#     license: MIT
+#     homepage: https://github.com/sidisinsane/keep-go
 
 release:
   footer: |-

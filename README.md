@@ -28,12 +28,14 @@ curl -o- https://raw.githubusercontent.com/sidisinsane/keep-go/main/install.sh |
 irm https://raw.githubusercontent.com/sidisinsane/keep-go/main/install.ps1 | iex
 ```
 
+<!--
 **Homebrew (macOS/Linux):**
 
 ```bash
 brew tap sidisinsane/homebrew-tap
 brew install keep
 ```
+-->
 
 **Archive download (macOS/Linux):**
 
