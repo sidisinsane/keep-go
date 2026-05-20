@@ -25,7 +25,7 @@ $Arch = if ([System.Environment]::Is64BitOperatingSystem) {
 }
 
 # 2. Construct filename and download URL
-$Filename    = "${BinaryName}_Windows_${Arch}.zip"
+$Filename    = "${GithubRepo}_Windows_${Arch}.zip"
 $DownloadUrl = "https://github.com/${GithubUser}/${GithubRepo}/releases/latest/download/${Filename}"
 
 # 3. Create the installation directory

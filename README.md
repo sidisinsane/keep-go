@@ -41,14 +41,14 @@ brew install keep
 
 ```bash
 # Download the release asset and its corresponding SHA256 checksum file
-curl -OL https://github.com/sidisinsane/keep-go/releases/download/v0.1.0/keep_Darwin_arm64.tar.gz
+curl -OL https://github.com/sidisinsane/keep-go/releases/download/v0.1.0/keep-go_Darwin_arm64.tar.gz
 curl -OL https://github.com/sidisinsane/keep-go/releases/download/v0.1.0/checksums.txt
 
 # Verify the checksum
 shasum -a 256 --check --ignore-missing checksums.txt
 
 # Extract the archive
-tar -xzf keep_Darwin_arm64.tar.gz
+tar -xzf keep-go_Darwin_arm64.tar.gz
 
 # Move the binary to a directory on your PATH
 mv keep /usr/local/bin/

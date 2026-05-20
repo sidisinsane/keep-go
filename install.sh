@@ -41,7 +41,7 @@ else
 fi
 
 # 4. Construct filename and download URL
-FILENAME="${BINARY_NAME}_${PLATFORM}_${ARCH}.tar.gz"
+FILENAME="${GITHUB_REPO}_${PLATFORM}_${ARCH}.tar.gz"
 DOWNLOAD_URL="https://github.com/${GITHUB_USER}/${GITHUB_REPO}/releases/latest/download/${FILENAME}"
 
 # 5. Create the installation directory
